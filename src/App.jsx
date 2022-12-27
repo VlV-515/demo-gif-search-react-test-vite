@@ -4,15 +4,15 @@ import { AddCategory } from './components/AddCategory/AddCategory';
 export default function App() {
   const [categories, setCategories] = useState(['React', 'Vue', 'Angular']);
 
-  const onAddCategory = () => {
-    setCategories([...categories, 'Holis']);
+  const onAddCategory = (newCategory) => {
+    if (categories.includes(newCategory)) return alert('Repetida');
+    setCategories([newCategory, ...categories]);
   };
 
   return (
     <>
       <h1>Hello React!</h1>
-      <AddCategory />
-      <button onClick={onAddCategory}>Agregar</button>
+      <AddCategory onAddCategory={onAddCategory} />
       <ol>
         {categories.map((category) => (
           <li key={category}>{category}</li>
